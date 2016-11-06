@@ -30,6 +30,9 @@ $(document).on('ready', function()
         method: 'get',
         data: '/skills.json',        
         valueField: 'name',
-        displayField: 'name'
+        displayField: 'name',
+
+        placeholder: 'Укажите умения',
+        noSuggestionText: 'Совпадений нет'
     });    
 });

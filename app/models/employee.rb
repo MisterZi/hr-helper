@@ -24,4 +24,29 @@ class Employee < ActiveRecord::Base
   def skills_data
     skills.map { |s| s.name }.to_json
   end
+
+  def suitable
+    # Vacancy.
+    # select(%q(DISTINCT("vacancies".*))).
+    # joins(skills:[:vacancies]).
+    # where(%("vacancies"."expiration_date" > ?), Time.current).
+    # group(%q("vacancies"."id")).
+    # order(%q("vacancies"."salary" DESC))
+
+
+    vacancies = Vacancy.
+        includes(:skills).
+        joins(skills:[:vacancies]).
+        where(%("vacancies"."expiration_date" > ?), Time.current).
+        group(:id).
+        order(salary: :desc)
+
+    vacancies.each do |v|
+      # todo
+      if v.skills.ids.all? { |e| skills.ids.include?(e) }
+        puts "Вакансия #{v.name} подходит!"
+      end
+    end
+
+  end
 end

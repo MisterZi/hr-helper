@@ -19,4 +19,5 @@ class Vacancy < ActiveRecord::Base
   def skills_data
     skills.map { |s| s.name }.to_json
   end
+
 end
