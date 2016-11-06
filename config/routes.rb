@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   resources :vacancies do
     resources :skills, only: [:create, :destroy]
   end
+
+  resources :employees do
+    resources :skills, only: [:create, :destroy]
+  end
 end

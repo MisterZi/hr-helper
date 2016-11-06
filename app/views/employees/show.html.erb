@@ -1,4 +1,14 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="vacancy-description">
+      <h1><%= @employee.name %></h1>
+      <p>Зарплата: <%= @employee.salary %></p>
+      <p>Навыки: <%= @employee.skills.map {|s| s.name}.join(', ') %></p>
+      <p>Статус: <%= @employee.status %></p>
+      <p>Контактная информация: <%= @employee.contacts %></p>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<%= link_to 'Редактировать', edit_employee_path(@employee) %> |
+<%= link_to 'К списку', employees_path %>

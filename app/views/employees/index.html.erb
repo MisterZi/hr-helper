@@ -1,25 +1,26 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Employees</h1>
+<h1>Список работников</h1>
 
 <table>
   <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
-  <tbody>
-    <% @employees.each do |employee| %>
-      <tr>
-        <td><%= link_to 'Show', employee %></td>
-        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="list-group">
+        <% @employees.each do |employee| %>
+            <a href="employees/<%= employee.id %>" class="list-group-item row">
+              <div class="col-md-6"><%= employee.name %></div>
+              <div class="col-md-6 text-right"><%= employee.salary %> руб.</div>
+            </a>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </table>
 
 <br>
 
-<%= link_to 'New Employee', new_employee_path %>
+<%= link_to 'Новый работник', new_employee_path %>

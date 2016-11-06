@@ -1,7 +1,7 @@
 class Employee < ActiveRecord::Base
   has_and_belongs_to_many :skills
 
-  validates :name, :contacts, :status, :salary, presence: true
+  validates :name, :contacts, :salary, presence: true
   validates :name, format: {
       with: /\A[А-Яа-я]+ [А-Яа-я]+ [А-Яа-я]+\z/,
       message: 'ФИО должно быть на кириллице и содержать 3 слова'}
