@@ -69,6 +69,6 @@ class VacanciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vacancy_params
-      params.fetch(:vacancy, {})
+      params.require(:vacancy).permit(:name, :expiration_date, :salary, :contacts, skills_data: [])
     end
 end

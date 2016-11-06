@@ -15,3 +15,21 @@
 //= require twitter/bootstrap
 //= require magicsuggest
 //= require_tree .
+
+
+$(document).on('ready', function()
+{
+    $("#skills_input").magicSuggest({
+        autoSelect: true,
+        maxSelection: null,
+        hideTrigger: true,
+        highlight: false,
+        cls: 'form-control-addition',
+        selectionCls: 'selection-addition',
+
+        method: 'get',
+        data: '/skills.json',        
+        valueField: 'name',
+        displayField: 'name'
+    });    
+});

@@ -1,17 +1,45 @@
 <%= form_for(@vacancy) do |f| %>
-  <% if @vacancy.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@vacancy.errors.count, "error") %> prohibited this vacancy from being saved:</h2>
+    <% if @vacancy.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@vacancy.errors.count, "error") %> prohibited this vacancy from being saved:</h2>
 
-      <ul>
-      <% @vacancy.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @vacancy.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :name, 'Название' %>
+      <%= f.text_field :name, placeholder: 'Название вакансии', class: 'form-control' %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-group">
+      <%= f.label :expiration_date, 'Дата окончания' %>
+      <%= f.text_field :expiration_date, placeholder: 'дд.мм.гггг', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :salary, 'Зарплата' %>
+      <%= f.text_field :salary, placeholder: 'Рублей', class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :contacts, 'Контактная информация' %>
+      <%= f.text_field :contacts, placeholder: 'Любая контактная информация', class: 'form-control' %>
+    </div>
+
+
+    <div class="form-group">
+      <%= f.label :skills_data, 'Навыки' %>
+      <%= f.text_field :skills_data, id: 'skills_input' %>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit 'Сохранить', class: 'btn btn-primary' %> или <%= link_to 'вернуться', :back %>
+    </div>
+
 <% end %>

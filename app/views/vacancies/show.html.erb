@@ -1,4 +1,17 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-6">
+    <div class="vacancy-description">
+      <h1><%= @vacancy.name %></h1>
+      <p>Зарплата: <%= @vacancy.salary %></p>
+      <p>Действительна до: <%= @vacancy.expiration_date %></p>
+      <p>Контактная информация: <%= @vacancy.contacts %></p>
+      <p>
+        <strong>Умения:</strong>
+        <%= @vacancy.skills.map {|s| s.name}.join(', ') %>
+      </p>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_vacancy_path(@vacancy) %> |
-<%= link_to 'Back', vacancies_path %>
+<%= link_to 'Редактировать', edit_vacancy_path(@vacancy) %> |
+<%= link_to 'К списку', vacancies_path %>
