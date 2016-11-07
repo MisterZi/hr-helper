@@ -1,11 +1,24 @@
 <div class="row">
   <div class="col-md-6">
-    <div class="vacancy-description">
+    <div class="employee-description">
       <h1><%= @employee.name %></h1>
       <p>Зарплата: <%= @employee.salary %></p>
       <p>Навыки: <%= @employee.skills.map {|s| s.name}.join(', ') %></p>
       <p>Статус: <%= @employee.status %></p>
       <p>Контактная информация: <%= @employee.contacts %></p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="suitable-vacancies">
+      <h2>Подходящие вакансии:</h2>
+      <div class="list-group">
+        <% @suitable_vacancies.each do |v| %>
+            <a href="<%= vacancy_path(v) %>" class="list-group-item row">
+              <div class="col-md-6"><%= v.name %></div>
+              <div class="col-md-6 text-right"><%= v.salary %> руб.</div>
+            </a>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

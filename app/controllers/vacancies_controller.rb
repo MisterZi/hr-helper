@@ -10,6 +10,7 @@ class VacanciesController < ApplicationController
   # GET /vacancies/1
   # GET /vacancies/1.json
   def show
+    @suitable_employees = @vacancy.suitable
   end
 
   # GET /vacancies/new

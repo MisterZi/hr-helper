@@ -26,27 +26,16 @@ class Employee < ActiveRecord::Base
   end
 
   def suitable
-    # Vacancy.
-    # select(%q(DISTINCT("vacancies".*))).
-    # joins(skills:[:vacancies]).
-    # where(%("vacancies"."expiration_date" > ?), Time.current).
-    # group(%q("vacancies"."id")).
-    # order(%q("vacancies"."salary" DESC))
 
+    suitable_vacancies = []
 
-    vacancies = Vacancy.
-        includes(:skills).
-        joins(skills:[:vacancies]).
-        where(%("vacancies"."expiration_date" > ?), Time.current).
-        group(:id).
-        order(salary: :desc)
-
-    vacancies.each do |v|
-      # todo
-      if v.skills.ids.all? { |e| skills.ids.include?(e) }
-        puts "Вакансия #{v.name} подходит!"
+    vacancies = Vacancy.where(%("vacancies"."expiration_date" > ?), Time.current).order(salary: :desc)
+    vacancies.each do |vacancy|
+      if vacancy.skills.ids.all? { |e| skills.ids.include?(e) }
+        suitable_vacancies << vacancy
       end
     end
 
+    suitable_vacancies
   end
 end

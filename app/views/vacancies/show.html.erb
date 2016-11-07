@@ -11,6 +11,19 @@
       </p>
     </div>
   </div>
+  <div class="col-md-6">
+    <div class="suitable-vacancies">
+      <h2>Подходящие работники:</h2>
+      <div class="list-group">
+        <% @suitable_employees.each do |e| %>
+            <a href="<%= employee_path(e) %>" class="list-group-item row">
+              <div class="col-md-6"><%= e.name %></div>
+              <div class="col-md-6 text-right"><%= e.salary %> руб.</div>
+            </a>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <%= link_to 'Редактировать', edit_vacancy_path(@vacancy) %> |

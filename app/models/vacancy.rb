@@ -20,4 +20,17 @@ class Vacancy < ActiveRecord::Base
     skills.map { |s| s.name }.to_json
   end
 
+  def suitable
+
+    suitable_employees = []
+
+    employees = Employee.where(status: true).order(:salary)
+    employees.each do |employee|
+      if skills.ids.all? { |e| employee.skills.ids.include?(e) }
+        suitable_employees << employee
+      end
+    end
+
+    suitable_employees
+  end
 end
