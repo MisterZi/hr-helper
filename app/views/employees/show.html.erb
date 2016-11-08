@@ -35,7 +35,7 @@
 
     <% if @suitable_vacancies[:partially].present? %>
       <div class="suitable-vacancies">
-        <h3>Частично подходящие работники:</h3>
+        <h3>Частично подходящие вакансии:</h3>
         <div class="list-group">
           <% @suitable_vacancies[:partially].each do |e| %>
               <a href="<%= vacancy_path(e) %>" class="list-group-item row">
