@@ -32,7 +32,7 @@ $(document).on('ready', function()
         valueField: 'name',
         displayField: 'name',
 
-        placeholder: 'Укажите умения',
+        placeholder: 'Укажите навыки',
         noSuggestionText: 'Совпадений нет'
     });    
 });
