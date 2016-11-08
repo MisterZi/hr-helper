@@ -1,16 +1,7 @@
 <%= form_for(@employee) do |f| %>
 
-    <% if @employee.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this vacancy from being saved:</h2>
+    <%= render partial: 'partials/form_errors', locals: {model: @employee} %>
 
-          <ul>
-            <% @employee.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
     <div class="form-group">
       <%= f.label :name, 'ФИО' %>
       <%= f.text_field :name, placeholder: 'Только кириллица', class: 'form-control'  %>
@@ -24,7 +15,7 @@
      <!--todo-->
     <div class="form-group">
       <%= f.label :status, 'Ищу работу' %>
-      <%= f.radio_button :status, true %>
+      <%= f.radio_button :status, true, checked: true %>
       <%= f.label :status, 'Не ищу работу' %>
       <%= f.radio_button :status, false %>
     </div>

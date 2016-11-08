@@ -22,15 +22,18 @@ class Vacancy < ActiveRecord::Base
 
   def suitable
 
-    suitable_employees = []
+    wholly_suitable_employees = []
+    partially_suitable_employees = []
 
     employees = Employee.where(status: true).order(:salary)
     employees.each do |employee|
       if skills.ids.all? { |e| employee.skills.ids.include?(e) }
-        suitable_employees << employee
+        wholly_suitable_employees << employee
+      elsif skills.ids.collect { |e| employee.skills.ids.include?(e) }
+        partially_suitable_employees << employee
       end
     end
 
-    suitable_employees
+    suitable_employees = {wholly:  wholly_suitable_employees, partially: partially_suitable_employees}
   end
 end

@@ -10,6 +10,9 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'twitter-bootstrap-rails'
 
+# гем с русскими форматами (времени и пр.)
+gem 'russian'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

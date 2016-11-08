@@ -1,30 +1,48 @@
 <div class="row">
+
   <div class="col-md-6">
     <div class="vacancy-description">
       <h1><%= @vacancy.name %></h1>
-      <p>Зарплата: <%= @vacancy.salary %></p>
-      <p>Действительна до: <%= @vacancy.expiration_date %></p>
-      <p>Контактная информация: <%= @vacancy.contacts %></p>
-      <p>
-        <strong>Умения:</strong>
-        <%= @vacancy.skills.map {|s| s.name}.join(', ') %>
-      </p>
+      <p><strong>Зарплата:</strong> <%= @vacancy.salary %></p>
+      <p><strong>Действительна до:</strong> <%= @vacancy.expiration_date %></p>
+      <p><strong>Контактная информация:</strong> <%= @vacancy.contacts %></p>
+      <p><strong>Умения:</strong> <%= @vacancy.skills.map {|s| s.name}.join(', ') %> </p>
     </div>
+    <%= link_to 'Редактировать', edit_vacancy_path(@vacancy) %> |
+    <%= link_to 'К списку', vacancies_path %>
   </div>
+
   <div class="col-md-6">
-    <div class="suitable-vacancies">
-      <h2>Подходящие работники:</h2>
-      <div class="list-group">
-        <% @suitable_employees.each do |e| %>
-            <a href="<%= employee_path(e) %>" class="list-group-item row">
-              <div class="col-md-6"><%= e.name %></div>
-              <div class="col-md-6 text-right"><%= e.salary %> руб.</div>
-            </a>
-        <% end %>
+    <% if @suitable_employees[:wholly].present? %>
+      <div class="suitable-vacancies">
+        <h3>Полностью подходящие работники:</h3>
+        <div class="list-group">
+          <% @suitable_employees[:wholly].each do |e| %>
+              <a href="<%= employee_path(e) %>" class="list-group-item row">
+                <div class="col-md-6"><%= e.name %></div>
+                <div class="col-md-6 text-right"><%= e.salary %> руб.</div>
+              </a>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
+
+    <% if @suitable_employees[:partially].present? %>
+      <div class="suitable-vacancies">
+        <h3>Частично подходящие работники:</h3>
+        <div class="list-group">
+          <% @suitable_employees[:partially].each do |e| %>
+              <a href="<%= employee_path(e) %>" class="list-group-item row">
+                <div class="col-md-6"><%= e.name %></div>
+                <div class="col-md-6 text-right"><%= e.salary %> руб.</div>
+              </a>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
   </div>
+
 </div>
 
-<%= link_to 'Редактировать', edit_vacancy_path(@vacancy) %> |
-<%= link_to 'К списку', vacancies_path %>
+

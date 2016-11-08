@@ -27,15 +27,18 @@ class Employee < ActiveRecord::Base
 
   def suitable
 
-    suitable_vacancies = []
+    wholly_suitable_vacancies = []
+    partially_suitable_vacancies = []
 
     vacancies = Vacancy.where(%("vacancies"."expiration_date" > ?), Time.current).order(salary: :desc)
     vacancies.each do |vacancy|
       if vacancy.skills.ids.all? { |e| skills.ids.include?(e) }
-        suitable_vacancies << vacancy
+        wholly_suitable_vacancies << vacancy
+      elsif vacancy.skills.ids.collect { |e| skills.ids.include?(e) }
+        partially_suitable_vacancies << vacancy
       end
     end
 
-    suitable_vacancies
+    suitable_vacancies = {wholly: wholly_suitable_vacancies, partially: partially_suitable_vacancies}
   end
 end
