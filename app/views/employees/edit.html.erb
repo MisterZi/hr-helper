@@ -1,7 +1,11 @@
-<h1>Editing Employee</h1>
+<h1>Редактирование работника</h1>
 
 <div class="row">
   <div class="col-md-6">
     <%= render 'form' %>
+
+    <br>
+    <%= link_to 'Удалить', employee_path, method: :delete,
+                data: {confirm: 'Вы уверены, что хотите удалить работника?'}, class: 'btn btn-danger' %>
   </div>
 </div>

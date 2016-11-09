@@ -4,7 +4,7 @@ class VacanciesController < ApplicationController
   # GET /vacancies
   # GET /vacancies.json
   def index
-    @vacancies = Vacancy.all
+    @vacancies = Vacancy.all.order(created_at: :desc)
   end
 
   # GET /vacancies/1
@@ -29,7 +29,7 @@ class VacanciesController < ApplicationController
 
     respond_to do |format|
       if @vacancy.save
-        format.html { redirect_to @vacancy, notice: 'Vacancy was successfully created.' }
+        format.html { redirect_to @vacancy, notice: 'Новая вакансия была успешно создана.' }
         format.json { render :show, status: :created, location: @vacancy }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class VacanciesController < ApplicationController
   def update
     respond_to do |format|
       if @vacancy.update(vacancy_params)
-        format.html { redirect_to @vacancy, notice: 'Vacancy was successfully updated.' }
+        format.html { redirect_to @vacancy, notice: 'Вакансия была успешно обновлена' }
         format.json { render :show, status: :ok, location: @vacancy }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class VacanciesController < ApplicationController
   def destroy
     @vacancy.destroy
     respond_to do |format|
-      format.html { redirect_to vacancies_url, notice: 'Vacancy was successfully destroyed.' }
+      format.html { redirect_to vacancies_url, notice: 'Вакансия была успешно удалена' }
       format.json { head :no_content }
     end
   end
