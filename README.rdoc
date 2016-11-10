@@ -1,28 +1,32 @@
-== README
+== Описание
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Сайт кадрового агенства
 
-Things you may want to cover:
+Позволяет работать с вакансиями и работниками:
 
-* Ruby version
+* создавать новые
 
-* System dependencies
+* редактировать и удалять
 
-* Configuration
+* просматривать полностью/частично подходящих отсортированных работников для вакансий и наоборот
 
-* Database creation
+Реализовано на языке программирования Ruby v. 2.3.0 с использованием фреймворка Ruby on Rails v. 4.2.6
 
-* Database initialization
+== Установка и настройка
 
-* How to run the test suite
+Для запуска приложения Вам понадобятся установленные Ruby и Ruby on Rails, а также запущенный сервер PostgreSQL 
 
-* Services (job queues, cache servers, search engines, etc.)
+Внимание! Все команды выполняются с помощью консоли из корневой папки проекта
 
-* Deployment instructions
+Выполните следующие действия:
 
-* ...
+* Клонируйте git репозиторий (зеленая кнопочка в правом верхнем углу GitHub)
 
+* Запустите <tt>bundle install</tt>
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Выполните <tt>rake db:migrate</tt> для миграции БД
+
+== Запуск
+
+* Запустите локальный сервер командой <tt>rails s</tt>
+
